@@ -93,10 +93,10 @@
         }
         
         NSLog(@"Ranged beacon: UUID - %@, Major - %@, Minor - %@, Proximity - %@", rangedBeacon.proximityUUID.description, [rangedBeacon.major stringValue], [rangedBeacon.minor stringValue], proximityString);
-        
-        NSNotification *rangedBeaconsNote = [[NSNotification alloc] initWithName:@"beaconsRanged" object:self userInfo:[NSDictionary dictionaryWithObjects:beacons forKeys:beaconsKeys]];
-        [[NSNotificationCenter defaultCenter] postNotification:rangedBeaconsNote];
     }
+    
+    NSNotification *rangedBeaconsNote = [[NSNotification alloc] initWithName:@"beaconsRanged" object:self userInfo:[NSDictionary dictionaryWithObjects:beacons forKeys:beaconsKeys]];
+    [[NSNotificationCenter defaultCenter] postNotification:rangedBeaconsNote];
 }
 
 - (void)locationManager:(CLLocationManager *)manager rangingBeaconsDidFailForRegion:(CLBeaconRegion *)region withError:(NSError *)error
