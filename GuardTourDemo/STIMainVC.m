@@ -7,7 +7,6 @@
 //
 
 #import "STIMainVC.h"
-#import "ROXIMITYlib/ROXIMITYlib.h"
 
 @interface STIMainVC ()
 
@@ -28,7 +27,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedStatusNotification:) name:ROX_NOTIF_BEACON_RANGE_UPDATE object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedStatusNotification:) name:@"beaconsRanged" object:nil];
 }
 
 -(void) receivedStatusNotification:(NSNotification *) notification
@@ -37,7 +36,7 @@
     
     if ([rangedBeaconsDictionary count] > 0)
     {
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:ROX_NOTIF_BEACON_RANGE_UPDATE object:nil];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:@"beaconsRanged" object:nil];
         [self performSegueWithIdentifier:@"Arriving" sender:self];
     }
 }

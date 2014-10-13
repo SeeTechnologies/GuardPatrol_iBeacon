@@ -38,11 +38,11 @@
     {
         // demo app simplification - would normally load this data from a web service so it can be updated remotely
         // id in portal = 1-4385
-        STIBeacon *demoBeacon1 = [[STIBeacon alloc] initWithBeaconId:@"5363ca8869702d4afb2e0000" nearMessage:@"Use key #42 to unlock" immediateMessage:@"Relock after exiting" farMessage:@"Continue along front yard sidewalk"];
+        STIBeacon *demoBeacon1 = [[STIBeacon alloc] initWithBeaconId:@"4385" nearMessage:@"Use key #42 to unlock" immediateMessage:@"Relock after exiting" farMessage:@"Continue along front yard sidewalk"];
         // id in portal = 1-4494
-        STIBeacon *demoBeacon2 = [[STIBeacon alloc] initWithBeaconId:@"5363ca8869702d4afb2f0000" nearMessage:@"Behind books on middle shelf" immediateMessage:@"Confirmed locked" farMessage:@"At end of main floor hallway"];
+        STIBeacon *demoBeacon2 = [[STIBeacon alloc] initWithBeaconId:@"4494" nearMessage:@"Behind books on middle shelf" immediateMessage:@"Confirmed locked" farMessage:@"At end of main floor hallway"];
         // id in portal = 1-4447
-        STIBeacon *demoBeacon3 = [[STIBeacon alloc] initWithBeaconId:@"5363ca8869702d4afb300000" nearMessage:@"Mounted on outside wall" immediateMessage:@"Confirmed not stolen" farMessage:@"Next to front entryway"];
+        STIBeacon *demoBeacon3 = [[STIBeacon alloc] initWithBeaconId:@"6" nearMessage:@"Mounted on outside wall" immediateMessage:@"Confirmed not stolen" farMessage:@"Next to front entryway"];
 
         [[DataManager sharedInstance] save];
         
@@ -68,9 +68,13 @@
 
 - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region
 {
+    NSMutableArray *beaconsKeys = [[NSMutableArray alloc] initWithCapacity:beacons.count];
+    
     for (CLBeacon *rangedBeacon in beacons)
     {
         NSString *proximityString = nil;
+        
+        [beaconsKeys addObject:[rangedBeacon.minor stringValue]];
         
         switch (rangedBeacon.proximity)
         {
@@ -89,6 +93,9 @@
         }
         
         NSLog(@"Ranged beacon: UUID - %@, Major - %@, Minor - %@, Proximity - %@", rangedBeacon.proximityUUID.description, [rangedBeacon.major stringValue], [rangedBeacon.minor stringValue], proximityString);
+        
+        NSNotification *rangedBeaconsNote = [[NSNotification alloc] initWithName:@"beaconsRanged" object:self userInfo:[NSDictionary dictionaryWithObjects:beacons forKeys:beaconsKeys]];
+        [[NSNotificationCenter defaultCenter] postNotification:rangedBeaconsNote];
     }
 }
 
