@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface STIAppDelegate : UIResponder <UIApplicationDelegate>
+@interface STIAppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate>
 
 #define UD_FIRST_LAUNCH @"FirstLaunch"
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) CLLocationManager *locationManager;
 
 @end

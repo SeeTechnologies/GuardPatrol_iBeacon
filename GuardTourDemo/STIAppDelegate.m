@@ -16,8 +16,21 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    [ROXIMITYEngine startWithLaunchOptions:launchOptions andEngineOptions: nil];
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    
+    NSUUID *beaconRoximityUUID = [[NSUUID alloc] initWithUUIDString:@"8DEEFBB9-F738-4297-8040-96668BB44281"];
+    CLBeaconRegion *beaconRoximityRegion = [[CLBeaconRegion alloc] initWithProximityUUID:beaconRoximityUUID identifier:@"beaconRoximity"];
+    
+    [self.locationManager startMonitoringForRegion:beaconRoximityRegion];
+    [self.locationManager startRangingBeaconsInRegion:beaconRoximityRegion];
 
+    NSUUID *beaconAppleUUID = [[NSUUID alloc] initWithUUIDString:@"E2C56DB5-DFFB-48D2-B060-D0F5A71096E0"];
+    CLBeaconRegion *beaconAppleRegion = [[CLBeaconRegion alloc] initWithProximityUUID:beaconAppleUUID identifier:@"beaconApple"];
+    
+    [self.locationManager startMonitoringForRegion:beaconAppleRegion];
+    [self.locationManager startRangingBeaconsInRegion:beaconAppleRegion];
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSArray *beacons = [STIBeaconController returnAllBeacons];
     
@@ -42,7 +55,48 @@
     
     return YES;
 }
-							
+
+//- (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
+//{
+//    [manager startRangingBeaconsInRegion:(CLBeaconRegion *)region];
+//}
+
+- (void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region withError:(NSError *)error
+{
+    NSLog(@"Error monitoring beacons for region: %@, Error Msg - %@", region.identifier, error.description);
+}
+
+- (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region
+{
+    for (CLBeacon *rangedBeacon in beacons)
+    {
+        NSString *proximityString = nil;
+        
+        switch (rangedBeacon.proximity)
+        {
+            case CLProximityFar:
+                proximityString = @"Far";
+                break;
+            case CLProximityNear:
+                proximityString = @"Near";
+                break;
+            case CLProximityImmediate:
+                proximityString = @"Immediate";
+                break;
+            default:
+                proximityString = @"Unknown";
+                break;
+        }
+        
+        NSLog(@"Ranged beacon: UUID - %@, Major - %@, Minor - %@, Proximity - %@", rangedBeacon.proximityUUID.description, [rangedBeacon.major stringValue], [rangedBeacon.minor stringValue], proximityString);
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager rangingBeaconsDidFailForRegion:(CLBeaconRegion *)region withError:(NSError *)error
+{
+    NSLog(@"Error ranging beacons for region: %@, Error Msg - %@", region.identifier, error.description);
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

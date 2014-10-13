@@ -322,6 +322,7 @@
 				ORGANIZATIONNAME = "Seetechnologies Inc.";
 				TargetAttributes = {
 					49BA06BF19777FAE003EC4D3 = {
+						DevelopmentTeam = W74S3QA4TW;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
