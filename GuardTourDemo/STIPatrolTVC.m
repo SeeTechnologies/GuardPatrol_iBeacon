@@ -29,7 +29,6 @@ typedef NS_ENUM(NSInteger, STIEntrywayStatus)
 
 enum STIEntrywayStatus _entrywayStatus = STIEntrywayStatusNotVisited;
 int _beaconCheckTotalCount = 0;
-BOOL _allBeaconsFound = false;
 SystemSoundID _soundID = 0;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -63,6 +62,7 @@ SystemSoundID _soundID = 0;
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [self.activityIndicator stopAnimating];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
@@ -73,24 +73,10 @@ SystemSoundID _soundID = 0;
     }
 }
 
-//This function is the application’s response to the observation of the “ROX_NOTIF_BEACON_RANGE_UPDATE” string from the Notification Center. Here it is passed a notification containing the userInfo dictionary.
 -(void) receivedStatusNotification:(NSNotification *) notification
 {
     NSDictionary *rangedBeaconsDictionary = notification.userInfo;
     NSArray *propertyBeacons = [STIBeaconController returnAllBeacons];
-    
-    if (!_allBeaconsFound)
-    {
-        if ([rangedBeaconsDictionary count] >= [propertyBeacons count])
-        {
-            _allBeaconsFound = true;
-            [self.activityIndicator stopAnimating];
-        }
-        else
-        {
-            [self.activityIndicator startAnimating];
-        }
-    }
     
     for (STIBeacon *propertyBeacon in propertyBeacons)
     {
@@ -216,16 +202,7 @@ SystemSoundID _soundID = 0;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PatrolCell" forIndexPath:indexPath];
     
     STIBeacon *beacon = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    
-    if (!_allBeaconsFound && (beacon.name == nil || [beacon.name isEqualToString:@""]))
-    {
-        cell.textLabel.text = @"Searching for checkpoint...";
-        cell.detailTextLabel.text = @"";
-    }
-    else
-    {
-        cell.textLabel.text = beacon.name;
-    }
+    cell.textLabel.text = beacon.name;
 
     if (beacon.checked)
     {
@@ -244,11 +221,8 @@ SystemSoundID _soundID = 0;
             case CLProximityImmediate:
                 cell.detailTextLabel.text = beacon.immediateMessage;
                 break;
-            case CLProximityUnknown:
-                // unknown - do nothing
-                break;
             default:
-                cell.detailTextLabel.text = @"";
+                cell.detailTextLabel.text = @"Checkpoint not active";
                 break;
         }
     }
