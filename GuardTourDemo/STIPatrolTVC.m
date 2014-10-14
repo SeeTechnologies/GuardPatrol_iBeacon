@@ -7,7 +7,6 @@
 //
 
 #import "STIPatrolTVC.h"
-#import "ROXIMITYlib/ROXIMITYlib.h"
 #import "STIBeacon.h"
 #import "STIBeaconController.h"
 #import "STIAppDelegate.h"
@@ -20,14 +19,6 @@
 @implementation STIPatrolTVC
 
 #define BEACON_TYPE_ENTRYWAY @"entryway"
-
-typedef NS_ENUM(NSInteger, STIProximity)
-{
-    STIProximityUnknown,
-    STIProximityImmediate,
-    STIProximityNear,
-    STIProximityFar
-};
 
 typedef NS_ENUM(NSInteger, STIEntrywayStatus)
 {
@@ -59,7 +50,7 @@ SystemSoundID _soundID = 0;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedStatusNotification:) name:ROX_NOTIF_BEACON_RANGE_UPDATE object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedStatusNotification:) name:@"beaconsRanged" object:nil];
     self.title = @"Wilman Manor";
     [self.navigationItem setHidesBackButton:YES];
     
@@ -90,44 +81,29 @@ SystemSoundID _soundID = 0;
     
     if (!_allBeaconsFound)
     {
-        if ([rangedBeaconsDictionary count] != [propertyBeacons count])
-        {
-            [self.activityIndicator startAnimating];
-        }
-        else
+        if ([rangedBeaconsDictionary count] >= [propertyBeacons count])
         {
             _allBeaconsFound = true;
             [self.activityIndicator stopAnimating];
         }
+        else
+        {
+            [self.activityIndicator startAnimating];
+        }
     }
     
-    for (STIBeacon *beacon in propertyBeacons)
+    for (STIBeacon *propertyBeacon in propertyBeacons)
     {
-        NSDictionary *beaconDictionary = [rangedBeaconsDictionary objectForKey:beacon.beaconId];
+        CLBeacon *rangedBeacon = (CLBeacon *) [rangedBeaconsDictionary objectForKey:propertyBeacon.beaconId];
         
-        if (beaconDictionary != nil)
+        if (rangedBeacon != nil)
         {
-            if (![beacon.name isEqualToString:[beaconDictionary objectForKey:kROXNotifBeaconName]])
-            {
-                beacon.name = [beaconDictionary objectForKey:kROXNotifBeaconName];
-            }
-            
-            NSArray *beaconTags = [beaconDictionary objectForKey:kROXNotifBeaconTags];
-            
-            if ([beaconTags count] > 0)
-            {
-                // demo simplification, can enter many tags via ROX portal
-                beacon.type = beaconTags[0];
-            }
-         
-            if ([beacon isNewProximity:[[beaconDictionary objectForKey:kROXNotifBeaconProximityValue] intValue]])
+            if ([propertyBeacon isNewProximity:rangedBeacon.proximity])
             {
                 // TODO: refactor into new method?
-                beacon.currentProximityValue = [beaconDictionary objectForKey:kROXNotifBeaconProximityValue];
-
                 UIAlertView *helpAlert = [[UIAlertView alloc] initWithTitle:nil message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK",nil];
                 
-                if ([beacon.currentProximityValue intValue] == STIProximityImmediate)
+                if ([propertyBeacon.currentProximityValue intValue] == CLProximityImmediate)
                 {
                     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                     BOOL firstAppLaunch = [defaults boolForKey:UD_FIRST_LAUNCH];
@@ -135,11 +111,11 @@ SystemSoundID _soundID = 0;
                     switch (_entrywayStatus)
                     {
                         case STIEntrywayStatusNotVisited:
-                            if ([beacon.type isEqualToString:BEACON_TYPE_ENTRYWAY])
+                            if ([propertyBeacon.type isEqualToString:BEACON_TYPE_ENTRYWAY])
                             {
                                 _entrywayStatus = STIEntrywayStatusEntered;
                                 _beaconCheckTotalCount = 1;
-                                beacon.checked = [NSNumber numberWithBool:YES];
+                                propertyBeacon.checked = [NSNumber numberWithBool:YES];
                                 AudioServicesPlaySystemSound(_soundID);
                                 
                                 if (firstAppLaunch)
@@ -149,9 +125,9 @@ SystemSoundID _soundID = 0;
                             }
                             break;
                         case STIEntrywayStatusEntered:
-                            if (![beacon.type isEqualToString:BEACON_TYPE_ENTRYWAY] && _beaconCheckTotalCount < [propertyBeacons count] && !beacon.checked)
+                            if (![propertyBeacon.type isEqualToString:BEACON_TYPE_ENTRYWAY] && _beaconCheckTotalCount < [propertyBeacons count] && !propertyBeacon.checked)
                             {
-                                beacon.checked = [NSNumber numberWithBool:YES];
+                                propertyBeacon.checked = [NSNumber numberWithBool:YES];
                                 _beaconCheckTotalCount++;
                                 AudioServicesPlaySystemSound(_soundID);
                                 
@@ -160,7 +136,7 @@ SystemSoundID _soundID = 0;
                                     helpAlert.message = @"Complete your patrol by leaving through the front door.";
                                 }
                             }
-                            else if ([beacon.type isEqualToString:BEACON_TYPE_ENTRYWAY] && _beaconCheckTotalCount == [propertyBeacons count])
+                            else if ([propertyBeacon.type isEqualToString:BEACON_TYPE_ENTRYWAY] && _beaconCheckTotalCount == [propertyBeacons count])
                             {
                                 _entrywayStatus = STIEntrywayStatusExited;
                                 AudioServicesPlaySystemSound(_soundID);
@@ -170,7 +146,7 @@ SystemSoundID _soundID = 0;
                                     helpAlert.message = @"Patrol completed. Please proceed to your next assignment.";
                                 }
                             }
-                            else if (firstAppLaunch && [beacon.type isEqualToString:BEACON_TYPE_ENTRYWAY] && _beaconCheckTotalCount > 1 && _beaconCheckTotalCount < [propertyBeacons count])
+                            else if (firstAppLaunch && [propertyBeacon.type isEqualToString:BEACON_TYPE_ENTRYWAY] && _beaconCheckTotalCount > 1 && _beaconCheckTotalCount < [propertyBeacons count])
                             {
                                 helpAlert.message = @"You need to visit all the other checkpoints before leaving the property.";
                             }
@@ -259,16 +235,16 @@ SystemSoundID _soundID = 0;
     {
         switch ([beacon.currentProximityValue intValue])
         {
-            case STIProximityFar:
+            case CLProximityFar:
                 cell.detailTextLabel.text = beacon.farMessage;
                 break;
-            case STIProximityNear:
+            case CLProximityNear:
                 cell.detailTextLabel.text = beacon.nearMessage;
                 break;
-            case STIProximityImmediate:
+            case CLProximityImmediate:
                 cell.detailTextLabel.text = beacon.immediateMessage;
                 break;
-            case STIProximityUnknown:
+            case CLProximityUnknown:
                 // unknown - do nothing
                 break;
             default:

@@ -28,11 +28,11 @@
 
 - (id)init
 {
-    return [self initWithBeaconId:@"" nearMessage:@"" immediateMessage:@"" farMessage:@""];
+    return [self initWithBeaconId:@"" nearMessage:@"" immediateMessage:@"" farMessage:@"" name:@""];
 }
 
 // designated initializer
-- (instancetype)initWithBeaconId: (NSString *) newBeaconId nearMessage: (NSString *) newNearMessage immediateMessage: (NSString *) newImmediateMessage farMessage: (NSString *) newFarMessage
+- (instancetype)initWithBeaconId: (NSString *) newBeaconId nearMessage: (NSString *) newNearMessage immediateMessage: (NSString *) newImmediateMessage farMessage: (NSString *) newFarMessage name: (NSString *) newName
 {
     self = [NSEntityDescription insertNewObjectForEntityForName:@"STIBeacon" inManagedObjectContext:[[DataManager sharedInstance] mainObjectContext]];
     
@@ -40,19 +40,19 @@
     self.nearMessage = newNearMessage;
     self.immediateMessage = newImmediateMessage;
     self.farMessage = newFarMessage;
-    self.name = @"";
+    self.name = newName;
     self.type = @"";
     
     return self;
 }
 
-- (BOOL)isNewProximity:(int) incomingProximityValue
+- (BOOL)isNewProximity:(CLProximity) incomingProximityValue
 {
-    if (incomingProximityValue == 0)
+    if (incomingProximityValue == CLProximityUnknown)
     {
         return NO;
     }
-    else if ([self.currentProximityValue intValue] == 0 || ([self.currentProximityValue intValue] != incomingProximityValue && [self.differentProximityCount intValue] > 1))
+    else if ([self.currentProximityValue intValue] == CLProximityUnknown || ([self.currentProximityValue intValue] != incomingProximityValue && [self.differentProximityCount intValue] > 1))
     {
         self.currentProximityValue = [NSNumber numberWithInt: incomingProximityValue];
         self.differentProximityCount = [NSNumber numberWithInt:0];

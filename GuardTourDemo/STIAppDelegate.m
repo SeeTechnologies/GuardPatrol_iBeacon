@@ -37,12 +37,11 @@
     if ([beacons count] == 0)
     {
         // demo app simplification - would normally load this data from a web service so it can be updated remotely
-        // id in portal = 1-4385
-        STIBeacon *demoBeacon1 = [[STIBeacon alloc] initWithBeaconId:@"4385" nearMessage:@"Use key #42 to unlock" immediateMessage:@"Relock after exiting" farMessage:@"Continue along front yard sidewalk"];
-        // id in portal = 1-4494
-        STIBeacon *demoBeacon2 = [[STIBeacon alloc] initWithBeaconId:@"4494" nearMessage:@"Behind books on middle shelf" immediateMessage:@"Confirmed locked" farMessage:@"At end of main floor hallway"];
-        // id in portal = 1-4447
-        STIBeacon *demoBeacon3 = [[STIBeacon alloc] initWithBeaconId:@"6" nearMessage:@"Mounted on outside wall" immediateMessage:@"Confirmed not stolen" farMessage:@"Next to front entryway"];
+        STIBeacon *demoBeacon1 = [[STIBeacon alloc] initWithBeaconId:@"4385" nearMessage:@"Use key #42 to unlock" immediateMessage:@"Relock after exiting" farMessage:@"Continue along front yard sidewalk" name:@"Front Door"];
+        demoBeacon1.type = @"entryway";
+        STIBeacon *demoBeacon2 = [[STIBeacon alloc] initWithBeaconId:@"4494" nearMessage:@"Behind books on middle shelf" immediateMessage:@"Confirmed locked" farMessage:@"At end of main floor hallway" name:@"Study - Safe"];
+        // iPhone 6 as iBeacon
+        STIBeacon *demoBeacon3 = [[STIBeacon alloc] initWithBeaconId:@"6" nearMessage:@"Mounted on outside wall" immediateMessage:@"Confirmed not stolen" farMessage:@"Next to front entryway" name:@"Living Room - 85 in. TV"];
 
         [[DataManager sharedInstance] save];
         

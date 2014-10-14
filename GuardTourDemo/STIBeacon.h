@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import <CoreLocation/CoreLocation.h>
 
 @class STIPatrol, STIProperty;
 
@@ -34,7 +35,7 @@
 - (void)addPatrolsForCheckedBeacon:(NSSet *)values;
 - (void)removePatrolsForCheckedBeacon:(NSSet *)values;
 
-- (instancetype)initWithBeaconId: (NSString *) newBeaconId nearMessage: (NSString *) newNearMessage immediateMessage: (NSString *) newImmediateMessage farMessage: (NSString *) newFarMessage;
-- (BOOL)isNewProximity:(int) incomingProximityValue;
+- (instancetype)initWithBeaconId: (NSString *) newBeaconId nearMessage: (NSString *) newNearMessage immediateMessage: (NSString *) newImmediateMessage farMessage: (NSString *) newFarMessage name: (NSString *) newName;
+- (BOOL)isNewProximity:(CLProximity) incomingProximityValue;
 
 @end
