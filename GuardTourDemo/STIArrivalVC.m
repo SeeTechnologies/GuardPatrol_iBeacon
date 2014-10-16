@@ -34,7 +34,7 @@
 {
     [super viewDidAppear:animated];
     
-    NSTimer *transitionTimer = [NSTimer timerWithTimeInterval:5 target:self selector:@selector(showPatrolView) userInfo:nil repeats:NO];
+    NSTimer *transitionTimer = [NSTimer timerWithTimeInterval:7 target:self selector:@selector(showPatrolView) userInfo:nil repeats:NO];
     [[NSRunLoop currentRunLoop] addTimer:transitionTimer forMode:NSDefaultRunLoopMode];
 }
 

@@ -27,6 +27,13 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    NSTimer *transitionTimer = [NSTimer timerWithTimeInterval:3 target:self selector:@selector(startObservingRangedBeacons) userInfo:nil repeats:NO];
+    [[NSRunLoop currentRunLoop] addTimer:transitionTimer forMode:NSDefaultRunLoopMode];
+}
+
+- (void)startObservingRangedBeacons
+{
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedStatusNotification:) name:@"beaconsRanged" object:nil];
 }
 
