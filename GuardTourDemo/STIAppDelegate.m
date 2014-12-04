@@ -17,13 +17,15 @@
     // Override point for customization after application launch.
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
-    
+
+    // the following UUID is the UUID for some, if not all, of the current Roximity iBeacons. If using a different brand of dedicated iBeacons replace this UUID with one appropriate to your devices
     NSUUID *beaconRoximityUUID = [[NSUUID alloc] initWithUUIDString:@"8DEEFBB9-F738-4297-8040-96668BB44281"];
     CLBeaconRegion *beaconRoximityRegion = [[CLBeaconRegion alloc] initWithProximityUUID:beaconRoximityUUID identifier:@"beaconRoximity"];
     
 //    [self.locationManager startMonitoringForRegion:beaconRoximityRegion];
     [self.locationManager startRangingBeaconsInRegion:beaconRoximityRegion];
 
+    // the following UUID is one of the default UUIDs in the AirLocate sample app
     NSUUID *beaconAppleUUID = [[NSUUID alloc] initWithUUIDString:@"E2C56DB5-DFFB-48D2-B060-D0F5A71096E0"];
     CLBeaconRegion *beaconAppleRegion = [[CLBeaconRegion alloc] initWithProximityUUID:beaconAppleUUID identifier:@"beaconApple"];
     
@@ -36,10 +38,10 @@
     if ([beacons count] == 0)
     {
         // demo app simplification - would normally load this data from a web service so it can be updated remotely
-        STIBeacon *demoBeacon1 = [[STIBeacon alloc] initWithBeaconId:@"4385" nearMessage:@"Use key #42 to unlock" immediateMessage:@"Relock after exiting" farMessage:@"Continue along front yard sidewalk" name:@"Front Door"];
+        STIBeacon *demoBeacon1 = [[STIBeacon alloc] initWithBeaconId:@"1" nearMessage:@"Use key #42 to unlock" immediateMessage:@"Relock after exiting" farMessage:@"Continue along front yard sidewalk" name:@"Front Door"];
         demoBeacon1.type = @"entryway";
+//        // comment out one of the 2 following beacons if you only have 2 total beacons or add more beacons if you have more. Edit the beaconIds to match the minor identifiers on each of your different beacons. Note that this data is persisted in Core Data on first launch of the app. If you update this data after installing on a device you will need to delete the Guard Patrol app from your device and re-install the app
         STIBeacon *demoBeacon2 = [[STIBeacon alloc] initWithBeaconId:@"4494" nearMessage:@"Behind books on middle shelf" immediateMessage:@"Confirmed locked" farMessage:@"At end of main floor hallway" name:@"Study - Safe"];
-        // iPhone 6 as iBeacon
         STIBeacon *demoBeacon3 = [[STIBeacon alloc] initWithBeaconId:@"6" nearMessage:@"Mounted on outside wall" immediateMessage:@"Confirmed not stolen" farMessage:@"Next to front entryway" name:@"Living Room - 85 in. TV"];
 
         [[DataManager sharedInstance] save];

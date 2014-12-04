@@ -14,16 +14,13 @@
 		49BA06D019777FAE003EC4D3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BA06CF19777FAE003EC4D3 /* main.m */; };
 		49BA06D419777FAE003EC4D3 /* STIAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BA06D319777FAE003EC4D3 /* STIAppDelegate.m */; };
 		49BA06D719777FAE003EC4D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49BA06D519777FAE003EC4D3 /* Main.storyboard */; };
-		49BA06DA19777FAE003EC4D3 /* STIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BA06D919777FAE003EC4D3 /* STIViewController.m */; };
 		49BA06DC19777FAE003EC4D3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49BA06DB19777FAE003EC4D3 /* Images.xcassets */; };
 		49BA06E319777FAE003EC4D3 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49BA06E219777FAE003EC4D3 /* XCTest.framework */; };
 		49BA06E419777FAE003EC4D3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49BA06C319777FAE003EC4D3 /* Foundation.framework */; };
 		49BA06E519777FAE003EC4D3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49BA06C719777FAE003EC4D3 /* UIKit.framework */; };
 		49BA06ED19777FAE003EC4D3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49BA06EB19777FAE003EC4D3 /* InfoPlist.strings */; };
 		49BA06EF19777FAE003EC4D3 /* GuardTourDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BA06EE19777FAE003EC4D3 /* GuardTourDemoTests.m */; };
-		49BA06FF1977816D003EC4D3 /* libROXIMITYlib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49BA06F81977816D003EC4D3 /* libROXIMITYlib.a */; };
 		49BA07001977816D003EC4D3 /* roximity.caf in Resources */ = {isa = PBXBuildFile; fileRef = 49BA06F91977816D003EC4D3 /* roximity.caf */; };
-		49BA07011977816D003EC4D3 /* ROXIMITYlib.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 49BA06FE1977816D003EC4D3 /* ROXIMITYlib.bundle */; };
 		49BA0705197781D7003EC4D3 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49BA0702197781D7003EC4D3 /* CoreBluetooth.framework */; };
 		49BA0706197781D7003EC4D3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49BA0703197781D7003EC4D3 /* CoreLocation.framework */; };
 		49BA0707197781D7003EC4D3 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49BA0704197781D7003EC4D3 /* CoreTelephony.framework */; };
@@ -43,7 +40,6 @@
 		49BDC7C9197D4F1300F11E48 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49BDC7C8197D4F1300F11E48 /* AudioToolbox.framework */; };
 		49BDC7CB197D52BE00F11E48 /* badge.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 49BDC7CA197D52BE00F11E48 /* badge.jpg */; };
 		49EFD16A197ACC3B001F9B70 /* STIPatrolTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EFD169197ACC3B001F9B70 /* STIPatrolTVC.m */; };
-		51154C03E5C1433F8B6724B3 /* libPods-GuardTourDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98E9BC9F7B7D4F5FBD9FB60A /* libPods-GuardTourDemo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,20 +64,13 @@
 		49BA06D219777FAE003EC4D3 /* STIAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = STIAppDelegate.h; sourceTree = "<group>"; };
 		49BA06D319777FAE003EC4D3 /* STIAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = STIAppDelegate.m; sourceTree = "<group>"; };
 		49BA06D619777FAE003EC4D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		49BA06D819777FAE003EC4D3 /* STIViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = STIViewController.h; sourceTree = "<group>"; };
-		49BA06D919777FAE003EC4D3 /* STIViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = STIViewController.m; sourceTree = "<group>"; };
 		49BA06DB19777FAE003EC4D3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		49BA06E119777FAE003EC4D3 /* GuardTourDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GuardTourDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		49BA06E219777FAE003EC4D3 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		49BA06EA19777FAE003EC4D3 /* GuardTourDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GuardTourDemoTests-Info.plist"; sourceTree = "<group>"; };
 		49BA06EC19777FAE003EC4D3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		49BA06EE19777FAE003EC4D3 /* GuardTourDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GuardTourDemoTests.m; sourceTree = "<group>"; };
-		49BA06F81977816D003EC4D3 /* libROXIMITYlib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libROXIMITYlib.a; sourceTree = "<group>"; };
 		49BA06F91977816D003EC4D3 /* roximity.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = roximity.caf; sourceTree = "<group>"; };
-		49BA06FB1977816D003EC4D3 /* ROXIMITYEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ROXIMITYEngine.h; sourceTree = "<group>"; };
-		49BA06FC1977816D003EC4D3 /* ROXIMITYlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ROXIMITYlib.h; sourceTree = "<group>"; };
-		49BA06FD1977816D003EC4D3 /* ROXNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ROXNotifications.h; sourceTree = "<group>"; };
-		49BA06FE1977816D003EC4D3 /* ROXIMITYlib.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ROXIMITYlib.bundle; sourceTree = "<group>"; };
 		49BA0702197781D7003EC4D3 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		49BA0703197781D7003EC4D3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		49BA0704197781D7003EC4D3 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -109,7 +98,6 @@
 		49BDC7CA197D52BE00F11E48 /* badge.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = badge.jpg; sourceTree = "<group>"; };
 		49EFD168197ACC3B001F9B70 /* STIPatrolTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STIPatrolTVC.h; sourceTree = "<group>"; };
 		49EFD169197ACC3B001F9B70 /* STIPatrolTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STIPatrolTVC.m; sourceTree = "<group>"; };
-		915247DCEA5744D5930A57EB /* Pods-GuardTourDemo.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GuardTourDemo.xcconfig"; path = "Pods/Pods-GuardTourDemo.xcconfig"; sourceTree = "<group>"; };
 		98E9BC9F7B7D4F5FBD9FB60A /* libPods-GuardTourDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GuardTourDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -129,8 +117,6 @@
 				49BA0707197781D7003EC4D3 /* CoreTelephony.framework in Frameworks */,
 				49BA06C619777FAE003EC4D3 /* CoreGraphics.framework in Frameworks */,
 				49BA06C819777FAE003EC4D3 /* UIKit.framework in Frameworks */,
-				49BA06FF1977816D003EC4D3 /* libROXIMITYlib.a in Frameworks */,
-				51154C03E5C1433F8B6724B3 /* libPods-GuardTourDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,7 +141,6 @@
 				49BA06E819777FAE003EC4D3 /* GuardTourDemoTests */,
 				49BA06C219777FAE003EC4D3 /* Frameworks */,
 				49BA06C119777FAE003EC4D3 /* Products */,
-				915247DCEA5744D5930A57EB /* Pods-GuardTourDemo.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -205,8 +190,6 @@
 				49BDC7AC197AFB2D00F11E48 /* GuardPatrol.xcdatamodeld */,
 				49EFD168197ACC3B001F9B70 /* STIPatrolTVC.h */,
 				49EFD169197ACC3B001F9B70 /* STIPatrolTVC.m */,
-				49BA06D819777FAE003EC4D3 /* STIViewController.h */,
-				49BA06D919777FAE003EC4D3 /* STIViewController.m */,
 				49BA06DB19777FAE003EC4D3 /* Images.xcassets */,
 				49BA06CA19777FAE003EC4D3 /* Supporting Files */,
 				49BDC7BB197B18B500F11E48 /* STIBeaconController.h */,
@@ -222,10 +205,7 @@
 		49BA06CA19777FAE003EC4D3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				49BA06F81977816D003EC4D3 /* libROXIMITYlib.a */,
 				49BA06F91977816D003EC4D3 /* roximity.caf */,
-				49BA06FA1977816D003EC4D3 /* ROXIMITYlib */,
-				49BA06FE1977816D003EC4D3 /* ROXIMITYlib.bundle */,
 				49BA06CB19777FAE003EC4D3 /* GuardTourDemo-Info.plist */,
 				49BA06CC19777FAE003EC4D3 /* InfoPlist.strings */,
 				49BA06CF19777FAE003EC4D3 /* main.m */,
@@ -252,16 +232,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		49BA06FA1977816D003EC4D3 /* ROXIMITYlib */ = {
-			isa = PBXGroup;
-			children = (
-				49BA06FB1977816D003EC4D3 /* ROXIMITYEngine.h */,
-				49BA06FC1977816D003EC4D3 /* ROXIMITYlib.h */,
-				49BA06FD1977816D003EC4D3 /* ROXNotifications.h */,
-			);
-			path = ROXIMITYlib;
-			sourceTree = "<group>";
-		};
 		49BDC7C4197CAE6F00F11E48 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -278,11 +248,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 49BA06F219777FAE003EC4D3 /* Build configuration list for PBXNativeTarget "GuardTourDemo" */;
 			buildPhases = (
-				8E9E8C9B22BE4DE3BDA89D5F /* Check Pods Manifest.lock */,
 				49BA06BC19777FAE003EC4D3 /* Sources */,
 				49BA06BD19777FAE003EC4D3 /* Frameworks */,
 				49BA06BE19777FAE003EC4D3 /* Resources */,
-				095547FCEDBF403D82437C14 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -361,7 +329,6 @@
 				49BDC7CB197D52BE00F11E48 /* badge.jpg in Resources */,
 				49BA06DC19777FAE003EC4D3 /* Images.xcassets in Resources */,
 				49BA07001977816D003EC4D3 /* roximity.caf in Resources */,
-				49BA07011977816D003EC4D3 /* ROXIMITYlib.bundle in Resources */,
 				49BDC7C6197CAE7E00F11E48 /* Big-house.jpg in Resources */,
 				49BA06CE19777FAE003EC4D3 /* InfoPlist.strings in Resources */,
 				49BA06D719777FAE003EC4D3 /* Main.storyboard in Resources */,
@@ -377,39 +344,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		095547FCEDBF403D82437C14 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-GuardTourDemo-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8E9E8C9B22BE4DE3BDA89D5F /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		49BA06BC19777FAE003EC4D3 /* Sources */ = {
@@ -427,7 +361,6 @@
 				49BDC7BD197B18B500F11E48 /* STIBeaconController.m in Sources */,
 				49BA06D419777FAE003EC4D3 /* STIAppDelegate.m in Sources */,
 				49BDC7AE197AFB2D00F11E48 /* GuardPatrol.xcdatamodeld in Sources */,
-				49BA06DA19777FAE003EC4D3 /* STIViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -549,17 +482,12 @@
 		};
 		49BA06F319777FAE003EC4D3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 915247DCEA5744D5930A57EB /* Pods-GuardTourDemo.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GuardTourDemo/GuardTourDemo-Prefix.pch";
-				HEADER_SEARCH_PATHS = (
-					"\"${PODS_ROOT}/Headers\"",
-					"\"${PODS_ROOT}/Headers/AFNetworking\"",
-					"$(PROJECT_DIR)/../**",
-				);
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../**";
 				INFOPLIST_FILE = "GuardTourDemo/GuardTourDemo-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -572,17 +500,12 @@
 		};
 		49BA06F419777FAE003EC4D3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 915247DCEA5744D5930A57EB /* Pods-GuardTourDemo.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GuardTourDemo/GuardTourDemo-Prefix.pch";
-				HEADER_SEARCH_PATHS = (
-					"\"${PODS_ROOT}/Headers\"",
-					"\"${PODS_ROOT}/Headers/AFNetworking\"",
-					"$(PROJECT_DIR)/../**",
-				);
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../**";
 				INFOPLIST_FILE = "GuardTourDemo/GuardTourDemo-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
