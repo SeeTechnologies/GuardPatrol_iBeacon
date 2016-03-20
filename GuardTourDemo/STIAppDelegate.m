@@ -10,7 +10,7 @@
 #import "STIBeacon.h"
 #import "STIBeaconController.h"
 
-@implementation STIAppDelegate
+@implementation STIAppDelegate 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -18,6 +18,35 @@
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
 
+    return YES;
+}
+
+- (BOOL)beaconsDetectionPermissionGranted
+{
+    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways)
+    {
+        [self startBeaconsDetection];
+        
+        return YES;
+    }
+    else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined)
+    {
+        [self.locationManager requestAlwaysAuthorization];
+    }
+    
+    return NO;
+}
+
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
+{
+    if (status == kCLAuthorizationStatusAuthorizedAlways)
+    {
+        [self startBeaconsDetection];
+    }
+}
+
+- (void)startBeaconsDetection
+{
     // the following UUID is the UUID for some, if not all, of the current Roximity iBeacons. If using a different brand of dedicated iBeacons replace this UUID with one appropriate to your devices
     NSUUID *beaconRoximityUUID = [[NSUUID alloc] initWithUUIDString:@"8DEEFBB9-F738-4297-8040-96668BB44281"];
     CLBeaconRegion *beaconRoximityRegion = [[CLBeaconRegion alloc] initWithProximityUUID:beaconRoximityUUID identifier:@"beaconRoximity"];
@@ -52,8 +81,6 @@
     {
         [defaults setBool:NO forKey:UD_FIRST_LAUNCH];
     }
-    
-    return YES;
 }
 
 //- (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
