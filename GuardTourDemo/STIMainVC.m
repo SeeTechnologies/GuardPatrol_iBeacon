@@ -7,13 +7,12 @@
 //
 
 #import "STIMainVC.h"
-#import "STIAppDelegate.h"
 
 @interface STIMainVC ()
 
 @end
 
-@implementation STIMainVC
+@implementation STIMainVC 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,12 +29,15 @@
     // Do any additional setup after loading the view.
     
     STIAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    appDelegate.beaconsDelegate = self;
     
-    if ([appDelegate beaconsDetectionPermissionGranted])
-    {
-        NSTimer *transitionTimer = [NSTimer timerWithTimeInterval:3 target:self selector:@selector(startObservingRangedBeacons) userInfo:nil repeats:NO];
-        [[NSRunLoop currentRunLoop] addTimer:transitionTimer forMode:NSDefaultRunLoopMode];
-    }
+    [appDelegate initiateBeaconsDetection];
+}
+
+- (void)didStartBeaconsDetection
+{
+    NSTimer *transitionTimer = [NSTimer timerWithTimeInterval:3 target:self selector:@selector(startObservingRangedBeacons) userInfo:nil repeats:NO];
+    [[NSRunLoop currentRunLoop] addTimer:transitionTimer forMode:NSDefaultRunLoopMode];
 }
 
 - (void)startObservingRangedBeacons

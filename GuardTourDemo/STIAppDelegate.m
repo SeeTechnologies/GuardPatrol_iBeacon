@@ -10,7 +10,7 @@
 #import "STIBeacon.h"
 #import "STIBeaconController.h"
 
-@implementation STIAppDelegate 
+@implementation STIAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -21,20 +21,22 @@
     return YES;
 }
 
-- (BOOL)beaconsDetectionPermissionGranted
+- (void)initiateBeaconsDetection
 {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways)
     {
-        [self startBeaconsDetection];
+        [defaults setBool:NO forKey:UD_FIRST_LAUNCH];
         
-        return YES;
+        [self startBeaconsDetection];
     }
     else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined)
     {
+        [defaults setBool:YES forKey:UD_FIRST_LAUNCH];
+        
         [self.locationManager requestAlwaysAuthorization];
     }
-    
-    return NO;
 }
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
@@ -61,7 +63,6 @@
 //    [self.locationManager startMonitoringForRegion:beaconAppleRegion];
     [self.locationManager startRangingBeaconsInRegion:beaconAppleRegion];
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSArray *beacons = [STIBeaconController returnAllBeacons];
     
     if ([beacons count] == 0)
@@ -70,17 +71,13 @@
         STIBeacon *demoBeacon1 = [[STIBeacon alloc] initWithBeaconId:@"1" nearMessage:@"Use key #42 to unlock" immediateMessage:@"Relock after exiting" farMessage:@"Continue along front yard sidewalk" name:@"Front Door"];
         demoBeacon1.type = @"entryway";
 //        // comment out one of the 2 following beacons if you only have 2 total beacons or add more beacons if you have more. Edit the beaconIds to match the minor identifiers on each of your different beacons. Note that this data is persisted in Core Data on first launch of the app. If you update this data after installing on a device you will need to delete the Guard Patrol app from your device and re-install the app
-        STIBeacon *demoBeacon2 = [[STIBeacon alloc] initWithBeaconId:@"4494" nearMessage:@"Behind books on middle shelf" immediateMessage:@"Confirmed locked" farMessage:@"At end of main floor hallway" name:@"Study - Safe"];
-        STIBeacon *demoBeacon3 = [[STIBeacon alloc] initWithBeaconId:@"6" nearMessage:@"Mounted on outside wall" immediateMessage:@"Confirmed not stolen" farMessage:@"Next to front entryway" name:@"Living Room - 85 in. TV"];
+        STIBeacon *demoBeacon2 = [[STIBeacon alloc] initWithBeaconId:@"2" nearMessage:@"Behind books on middle shelf" immediateMessage:@"Confirmed locked" farMessage:@"At end of main floor hallway" name:@"Study - Safe"];
+        STIBeacon *demoBeacon3 = [[STIBeacon alloc] initWithBeaconId:@"3" nearMessage:@"Mounted on outside wall" immediateMessage:@"Confirmed not stolen" farMessage:@"Next to front entryway" name:@"Living Room - 85\" TV"];
 
         [[DataManager sharedInstance] save];
-        
-        [defaults setBool:YES forKey:UD_FIRST_LAUNCH];
     }
-    else
-    {
-        [defaults setBool:NO forKey:UD_FIRST_LAUNCH];
-    }
+    
+    [self.beaconsDelegate didStartBeaconsDetection];
 }
 
 //- (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region

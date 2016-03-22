@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "STIAppDelegate.h"
 
-@interface STIMainVC : UIViewController
+@interface STIMainVC : UIViewController <BeaconsDelegate>
 
 @end

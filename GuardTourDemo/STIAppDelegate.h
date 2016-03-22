@@ -9,13 +9,20 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 
+@protocol BeaconsDelegate <NSObject>
+
+- (void) didStartBeaconsDetection;
+
+@end
+
 @interface STIAppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate>
 
 #define UD_FIRST_LAUNCH @"FirstLaunch"
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) CLLocationManager *locationManager;
+@property (weak) id <BeaconsDelegate> beaconsDelegate;
 
-- (BOOL)beaconsDetectionPermissionGranted;
+- (void)initiateBeaconsDetection;
 
 @end
